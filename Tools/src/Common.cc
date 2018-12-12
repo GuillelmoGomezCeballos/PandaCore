@@ -69,7 +69,8 @@ ProgressReporter::ProgressReporter(const char *n,
   name = n; name+="::Progress";
 }
 
-void ProgressReporter::Report() {
+void ProgressReporter::Report() 
+{
   if (*idx == 0) 
     globalStart = static_cast<long>(gSystem->Now());
   float progress = 1.*(*idx)/(*N);
@@ -86,6 +87,15 @@ void ProgressReporter::Report() {
   }
 }
 
+void ProgressReporter::Done()
+{
+  logger.info(name.Data(),
+      TString::Format("%-50s",
+        TString::Format("%u steps completed in %.2fs", 
+                        *N, (static_cast<long>(gSystem->Now()) - globalStart) * 0.001).Data()
+        ).Data(),
+      "\n");
+}
 
 TimeReporter::TimeReporter(TString n, int on_)
 {

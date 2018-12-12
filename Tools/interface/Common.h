@@ -129,6 +129,7 @@ class ProgressReporter {
      * \brief Reports if threshold has been reached
      */
     void Report();
+    void Done();
   private:
     const unsigned int *idx, *N; /**< addresses of progress trackers */
     unsigned int frequency; /**< how often to print */

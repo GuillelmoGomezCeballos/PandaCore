@@ -31,6 +31,7 @@ void BranchAdder::doAddBranch(TTree *t)
     }
     b->Fill();
   }
+  pr.Done();
 
   t->SetBranchStatus("*", 1);
 }

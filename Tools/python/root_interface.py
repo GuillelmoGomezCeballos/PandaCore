@@ -9,6 +9,7 @@ from PandaCore.Utils.root import root
 import root_numpy as rnp
 from array import array
 from PandaCore.Utils.logging import Logger 
+import types
 
 _logger = Logger('root_interface')
 _hcounter = 0 
@@ -74,15 +75,22 @@ def array_as_tree(xarr, treename = None, fcontext = None, xkwargs = {}):
     return tree
 
 
+def _isfn(f):
+    return type(f) == types.FunctionType
+
 # HISTOGRAM MANIPULATION ---------------------------------------------------
 def draw_hist(hist, xarr, fields, weight = None):
     warr = xarr[weight] if (weight is not None) else None
     if (warr is not None) and len(warr.shape)>1:
         warr = warr[:,0]
     if len(fields) == 1:
-        return rnp.fill_hist(hist = hist, array = xarr[fields[0]].flatten(), weights = warr)
+        if _isfn(fields[0]):
+            return rnp.fill_hist(hist = hist, array = fields[0](xarr).flatten(), weights = warr)
+        else:
+            return rnp.fill_hist(hist = hist, array = xarr[fields[0]].flatten(), weights = warr)
     else:
-        varr = np.array([xarr[f].flatten() for f in fields])
+        varr = [f(xarr).flatten() if _isfn(f) else xarr[f].flatten() for f in fields]
+        varr = np.array(varr)
         varr = varr.transpose()
         return rnp.fill_hist(hist = hist, array = varr, weights = warr)
 

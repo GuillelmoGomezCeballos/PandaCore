@@ -129,6 +129,7 @@ public:
 
   bool HasLegend() { return legend!=0; }
   void ClearLegend() { if (legend) legend->Clear(); }
+  TLegend* GetLegend() { return legend; }
   /**
    * \brief Adds a drawable TObject to be drawn after all histograms are drawn 
    * \param o a TObject to draw

@@ -14,7 +14,7 @@ Load('HistogramDrawer')
 
 tree_name = 'events'
 
-class Process():
+class Process(object):
     def __init__(self, name, pt, custom_color=root.nProcesses):
         self.name = name
         self.process_type = pt
@@ -77,32 +77,16 @@ def fix_overflow(h):
     h.SetBinContent(nbins, h.GetBinContent(nbins+1)+h.GetBinContent(nbins))
 
 
-class Distribution():
-    def __init__(self, name, bin_list, is_variable, xlabel, ylabel, filename=None, ybounds=None):
-        self.name = name
-        if name=='1':
-            # override
-            is_variable = False
-            bin_list = (0, 2, 1)
-        self.is_variable = is_variable
+class Distribution(object):
+    def __init__(self, formula, xlabel, ylabel, filename=None, ybounds=None):
+        self.formula = formula
         self.xlabel = xlabel
         self.ylabel = ylabel
-        self.filename = convert_name(filename if filename else name)
+        self.filename = convert_name(filename if filename else formula)
         self.ybounds = ybounds
         self.histograms = {} # so we can access all hists of this distribution
         self.systs = {}
         self.calc_chi2 = False
-        if is_variable:
-            self.bins = array('f', bin_list)
-            self.nbins = len(bin_list)-1
-            self.hbase = root.TH1D('hbase_%s'%(self.filename), 
-                                   '', self.nbins, self.bins)
-        else:
-            self.xbounds = (bin_list[0], bin_list[1])
-            self.nbins = bin_list[2]
-            self.hbase = root.TH1D('hbase_%s'%(self.filename), 
-                                   '', self.nbins, 
-                                   self.xbounds[0], self.xbounds[1])
     def generate_hist(self, label):
         self.histograms[label] = self.hbase.Clone('h_%s_%s'%(self.filename, convert_name(label)))
         self.histograms[label].Sumw2()
@@ -114,15 +98,34 @@ class Distribution():
         self.systs[label] = (hup, hdown)
         return (hup, hdown)
 
-def FDistribution(name, lo, hi, nbins, xlabel, ylabel, filename=None, ybounds=None):
-    return Distribution(name=name, bin_list=(lo, hi, nbins), is_variable=False, 
-                        xlabel=xlabel, ylabel=ylabel, filename=filename, ybounds=ybounds)
+class FDistribution(Distribution):
+    def __init__(self, formula, lo, hi, nbins, xlabel, ylabel, filename=None, ybounds=None):
+        super(FDistribution, self).__init__(formula, xlabel=xlabel, ylabel=ylabel, 
+                                            filename=filename,
+                                            ybounds=ybounds)
+        self.nbins = nbins 
+        self.hbase = root.TH1D('hbase_%s'%(self.filename), 
+                               '', self.nbins, lo, hi)
 
-def VDistribution(name, bins, xlabel, ylabel, filename=None, ybounds=None):
-    return Distribution(name=name, bin_list=bins, is_variable=True, 
-                        xlabel=xlabel, ylabel=ylabel, filename=filename, ybounds=ybounds)
+class VDistribution(Distribution):
+    def __init__(self, formula, bins, xlabel, ylabel, filename=None, ybounds=None):
+        super(VDistribution, self).__init__(formula, xlabel=xlabel, ylabel=ylabel, 
+                                            filename=filename,
+                                            ybounds=ybounds)
 
-class Systematic():
+        self.nbins = len(bins)-1
+        self.hbase = root.TH1D('hbase_%s'%(self.filename), 
+                               '', self.nbins, bins)
+
+#def FDistribution(name, lo, hi, nbins, xlabel, ylabel, filename=None, ybounds=None):
+#    return Distribution(name=name, bin_list=(lo, hi, nbins), is_variable=False, 
+#                        xlabel=xlabel, ylabel=ylabel, filename=filename, ybounds=ybounds)
+#
+#def VDistribution(name, bins, xlabel, ylabel, filename=None, ybounds=None):
+#    return Distribution(name=name, bin_list=bins, is_variable=True, 
+#                        xlabel=xlabel, ylabel=ylabel, filename=filename, ybounds=ybounds)
+
+class Systematic(object):
     def __init__(self, name, weight_up, weight_down, color=1):
         self.name = name
         self.weight_up = weight_up
@@ -139,18 +142,18 @@ class Systematic():
                 shift = shift.replace(k, v)
             return shift
 
-class PlotUtility():
+class PlotUtility(object):
     def __init__(self):
         self.canvas = root.HistogramDrawer()
         members = [x for x in dir(self.canvas) if ('__' not in x)]
         for m in members:
             if callable(getattr(self.canvas, m)):
-                self.__getPlotMethod(m)
+                self._getPlotMethod(m)
             else:
-                self.__getPlotMember(m)
-        self.__processes = [] 
-        self.__distributions = []
-        self.__systematics = []
+                self._getPlotMember(m)
+        self._processes = [] 
+        self._distributions = []
+        self._systematics = []
         # public configuration - defaults
         self.plot_label = '#it{CMS Preliminary}'
         self.do_underflow = True
@@ -160,26 +163,27 @@ class PlotUtility():
         self.mc_weight = None
         self.eventmod =  0
         self.eventnumber = 'eventNumber'
-        self.n_threads = 5
-        return
-    def __getPlotMethod(self, x):
+        self.n_threads = 8
+    def _getPlotMethod(self, x):
         method = getattr(self.canvas, x)
         setattr(self, x,  lambda *args : method(*args))
-    def __getPlotMember(self, x):
+    def _getPlotMember(self, x):
         member = getattr(self.canvas, x)
         setattr(self, x,  member)
     def add_process(self, p):
-        self.__processes.append(p)
+        self._processes.append(p)
     def add_distribution(self, d):
-        self.__distributions.append(d)
+        self._distributions.append(d)
     def add_systematic(self, name, up, down, color=1):
-        self.__systematics.append(Systematic(name, up, down, color))
+        self._systematics.append(Systematic(name, up, down, color))
+    def reset(self):
+        self._distributions = []
+        self._systematics = []
     def Draw(self):
         # override the thing that's bound in __init__
         logger.error('plot_utility.PlotUtility.Draw', 'Not implemented!')
-
-    #def __read(self, proc, f):
-    def __read(self, variables, proc, f):
+    #def _read(self, proc, f):
+    def _read(self, variables, proc, f):
         logger.info('PlotUtility.draw_all', 'Starting to read '+f.split('/')[-1])
         # figure out the nominal weight and cut strings
         final_weight = '1'
@@ -199,7 +203,7 @@ class PlotUtility():
         weight_map = {'nominal' : final_weight}
         weights = [final_weight]
         if proc.process_type!=root.kData:
-            for syst in self.__systematics:
+            for syst in self._systematics:
                 if proc.use_common_weight:
                     up_weight = syst.generate_weight(final_weight, True)
                     down_weight = syst.generate_weight(final_weight, False)
@@ -215,15 +219,14 @@ class PlotUtility():
         return {'xarr':xarr, 'weight_map':weight_map, 'f':f, 'proc':proc}
 
     def __draw(self, proc, weight_map, xarr):
-        for dist in self.__distributions:
-            vals = xarr[dist.name]
+        for dist in self._distributions:
             weights_nominal = xarr[weight_map['nominal']]
             draw_hist(hist = dist.histograms[proc.name],
                       xarr = xarr,
-                      fields = (dist.name, ),
+                      fields = (dist.formula, ),
                       weight = weight_map['nominal'])
             if proc.process_type!=root.kData:
-                for syst in self.__systematics:
+                for syst in self._systematics:
                     if proc.use_common_weight:
                         weights_up = weight_map['%s_Up'%syst.name]
                         weights_down = weight_map['%s_Down'%syst.name]
@@ -232,11 +235,11 @@ class PlotUtility():
                         weights_down = weight_map['nominal']
                     draw_hist(hist = dist.systs[syst.name][0],
                               xarr = xarr,
-                              fields = (dist.name, ),
+                              fields = (dist.formula, ),
                               weight = weights_up)
-                    draw_hist(hist = dist.systs[syst.name][1],
+                    draw_hist(hist = dist.systs[syst.formula][1],
                               xarr = xarr,
-                              fields = (dist.name, ),
+                              fields = (dist.formula, ),
                               weight = weights_down)
 
     def draw_all(self, outdir):
@@ -254,31 +257,32 @@ class PlotUtility():
         f_buffer.cd()
 
         variables = []
-        for dist in self.__distributions:
-            for syst in self.__systematics:
+        for dist in self._distributions:
+            for syst in self._systematics:
                 syst.hists = dist.generate_syst(syst.name)
 
-            for proc in self.__processes:
+            for proc in self._processes:
                 dist.generate_hist(proc.name)
 
-            variables.append(dist.name)
+            if isinstance(dist.formula, basestring):
+                variables.append(dist.formula)
 
         # loop through each process
         read_args = []
-        for proc in self.__processes:
+        for proc in self._processes:
             for f in proc.files:
                 read_args.append((variables, proc, f))
         if self.n_threads == 1 or len(read_args) == 1:
             read = []
             for r in read_args:
-                read.append(self.__read(*r))
+                read.append(self._read(*r))
         else:
             pool = ThreadPool(self.n_threads)
-            results = [pool.apply_async(self.__read, r) for r in read_args]
+            results = [pool.apply_async(self._read, r) for r in read_args]
             read = [r.get() for r  in results]
 
         # merge the results and draw
-        for proc in self.__processes:
+        for proc in self._processes:
             proc_read = []
             for r in read:
                 if r['proc'] == proc:
@@ -295,8 +299,8 @@ class PlotUtility():
             self.__draw(proc_read[0]['proc'], proc_read[0]['weight_map'], xarr)
 
         # everything is filled,  now draw the histograms!
-        for dist in self.__distributions:
-            if dist.name=="1":
+        for dist in self._distributions:
+            if dist.formula=="1":
                 totals = {'bg':0,  'sig':0,  'data':0}
                 errs = {'bg':0,  'sig':0,  'data':0}
                 table_format = '%-25s | %15f +/- %15f'
@@ -304,7 +308,7 @@ class PlotUtility():
                 table = ['%-25s | %15s +/- %15s'%('Process', 'Yield', 'Stat. unc.')]
                 table.append("=================================================================")
 
-                for proc in self.__processes:
+                for proc in self._processes:
                     h = dist.histograms[proc.name]
                     integral = h.GetBinContent(1)
                     error = h.GetBinError(1)
@@ -338,7 +342,7 @@ class PlotUtility():
                     logger.info('plot_utility.PlotUtility.Dump', t)
 
             h_unscaled = {'data':None, 'mc':None} # used for chi2 calc
-            for proc in self.__processes:
+            for proc in self._processes:
                 h = dist.histograms[proc.name]
                 if self.do_overflow:
                     fix_overflow(h)
@@ -351,7 +355,7 @@ class PlotUtility():
                         h_unscaled['mc'] = h.Clone()
                     else:
                         h_unscaled['mc'].Add(h)
-                if dist.is_variable:
+                if isinstance(dist, VDistribution):
                     divide_bin_width(h)
                 if dist.ybounds:
                     h.SetMinimum(ybounds[0])
@@ -382,14 +386,14 @@ class PlotUtility():
                 self.canvas.AddHistogram(*add_hist_args)
 
                 f_out.WriteTObject(h, h.GetName(), "overwrite")
-            for syst in self.__systematics:
+            for syst in self._systematics:
                 hup, hdown = dist.systs[syst.name]
                 for h in [hup, hdown]:
                     if self.do_overflow:
                         fix_overflow(h)
                     if self.do_underflow:
                         fix_underflow(h)
-                    if dist.is_variable:
+                    if isinstance(dist, VDistribution):
                         divide_bin_width(h)
                     h.SetLineWidth(3)
                     h.SetLineColor(syst.color)

@@ -8,6 +8,9 @@ from sys import stdout,stderr
 from os import getenv
 from PandaCore.Utils.logging import logger
 
+# recommended to use the Cut class below; rest
+# kept for backwards compatibility
+
 def tAND(s1,s2):
     ''' ANDs two strings '''
     if s1 and s2:
@@ -58,3 +61,21 @@ def remove_cut(basecut,var):
                      '1==1',
                      basecut)
                  )
+
+class Cut(str):
+    def __init__(self, s):
+        super(Cut, self).__init__(s)
+    def __and__(self, o):
+        return Cut(tAND(self, o))
+    def __iand__(self, o):
+        return (self & o)
+    def __or__(self, o):
+        return Cut(tOR(self, o))
+    def __ior__(self, o):
+        return (self | o)
+    def __mul__(self, o):
+        return Cut(tTIMES(self, o))
+    def __imul__(self, o):
+        return (self * o)
+    def __invert__(self):
+        return Cut(tNOT(self))

@@ -5,9 +5,25 @@ from array import array
 import subprocess as sp 
 
 parser = ArgumentParser()
-STORE_TRUE = {'action':'store_true'}
-STORE_FALSE = {'action':'store_false'}
-MANY = {'nargs':'+'}
+
+# just a dict, but with + implemented
+class ArgOpt(dict):
+    def __init__(self, *args, **kwargs):
+        super(ArgOpt, self).__init__()
+        for a in args:
+            if isinstance(a, dict):
+                self.update(a)
+        self.update(kwargs)
+    def __add__(self, other):
+        return ArgOpt(self, other)
+    def __iadd__(self, other):
+        self.update(other)
+        return self 
+
+STORE_TRUE = ArgOpt({'action':'store_true'})
+STORE_FALSE = ArgOpt({'action':'store_false'})
+MANY = ArgOpt({'nargs':'+'})
+
 def parse(*args):
     for a in args:
         if type(a) == tuple:

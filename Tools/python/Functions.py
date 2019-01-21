@@ -3,9 +3,16 @@
 Loads some numerical functions defined in a C++ file
 '''
 
-from os import getenv
-from ROOT import gROOT
 from PandaCore.Utils.load import Load 
+from PandaCore.Utils.root import root 
 
 Load('Functions')
-#gROOT.LoadMacro(getenv('CMSSW_BASE')+'/src/PandaCore/Tools/interface/Functions.h')
+
+# need to instantiate these things
+root.bound
+root.dsign
+root.Mxx
+root.MT
+root.SignedDeltaPhi
+root.DeltaR2
+root.ExpErf

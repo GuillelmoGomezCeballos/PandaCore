@@ -30,6 +30,7 @@ class EraHandler {
     std::vector<double> runBounds;
     std::vector<TString> eraNames;
     Binner *bins=0;
+    bool hadError=false;
 };
 
 #endif

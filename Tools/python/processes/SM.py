@@ -9,6 +9,7 @@ processes =    {
         'DYJetsToNuNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8':('ZtoNuNu_nlo','MC',11433.),
         'WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8':('WJets_nlo','MC',61527.),
         'WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8':('WJets_lo_incl','MC',50400.),
+        'WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8':('WJets_lo_incl_CP5','MC',50400.),
 
         # LO Z->nunu
         'ZJetsToNuNu_HT-100To200_13TeV-madgraph':('ZtoNuNu_ht100to200','MC',280.5),
@@ -147,6 +148,12 @@ processes =    {
         'ST_t-channel_antitop_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8':('SingleTop_tTbar_CP5','MC',80.95),
         'ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8':('SingleTop_tT_CP5','MC',136.02),
 
+        'ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8':('SingleTop_tTbar_CP518','MC',80.95),
+        'ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8':('SingleTop_tT_CP518','MC',136.02),
+        'ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8':('SingleTop_tbarW_noHad','MC',35.6*(1-0.68*0.68)),
+        'ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8':('SingleTop_tW_noHad','MC',35.6*(1-0.68*0.68)),
+
+
         # ttbar
         'TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8':                    ('TTbar_MLM','MC',831.76),
         'TTJets_DiLept_TuneCUETP8M1_13TeV-madgraphMLM-pythia8':             ('TTbar_2L','MC',831.76*(1-0.68)*(1-0.68)),
@@ -186,6 +193,10 @@ processes =    {
         'EWKZ2Jets_ZToLL_M-50_13TeV-madgraph-pythia8':('ZJets_EWK','MC',3.99),
         'EWKWPlus2Jets_WToLNu_M-50_13TeV-madgraph-pythia8':('WJets_EWKWPlus','MC',25.81),
         'EWKWMinus2Jets_WToLNu_M-50_13TeV-madgraph-pythia8':('WJets_EWKWMinus','MC',20.35),
+        'EWKZ2Jets_ZToNuNu_TuneCP5_13TeV-madgraph-pythia8':('ZtoNuNu_EWK','MC',10.04),
+        'EWKZ2Jets_ZToLL_M-50_TuneCP5_13TeV-madgraph-pythia8':('ZJets_EWK','MC',3.99),
+        'EWKWPlus2Jets_WToLNu_M-50_TuneCP5_13TeV-madgraph-pythia8':('WJets_EWKWPlus','MC',25.81),
+        'EWKWMinus2Jets_WToLNu_M-50_TuneCP5_13TeV-madgraph-pythia8':('WJets_EWKWMinus','MC',20.35),
 
         # regular dibosons
         'WW_TuneCUETP8M1_13TeV-pythia8':('Diboson_ww','MC',118.7),

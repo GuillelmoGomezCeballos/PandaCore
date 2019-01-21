@@ -112,6 +112,30 @@ BOSCOCluster == "ce03.cmsaf.mit.edu" && BOSCOGroup == "bosco_cms" && HAS_CVMFS_c
         schedd_server = getenv('HOSTNAME')
         should_spool = False
         query_owner = getenv('USER')
+    elif 'T2Only' in config:
+        base_job_properties = {
+            "Iwd" : "WORKDIR",
+            "Cmd" : "WORKDIR/exec.sh",
+            "WhenToTransferOutput" : "ON_EXIT",
+            "ShouldTransferFiles" : "YES",
+            "Requirements" :
+                classad.ExprTree('(Arch == "X86_64" %s) && \
+((GLIDEIN_Site == "MIT_CampusFactory" && \
+BOSCOCluster == "ce03.cmsaf.mit.edu" && BOSCOGroup == "bosco_cms" && HAS_CVMFS_cms_cern_ch))'%os),
+#                classad.ExprTree('UidDomain == "cmsaf.mit.edu" && Arch == "X86_64" && OpSysAndVer == "SL6"'),
+            "REQUIRED_OS" : "rhel6",
+            "AcctGroup" : 'group_cmsuser.USER',
+            "AccountingGroup" : 'group_cmsuser.USER',
+            "X509UserProxy" : "/tmp/x509up_uUID",
+            "OnExitHold" : classad.ExprTree("( ExitBySignal == true ) || ( ExitCode != 0 )"),
+            "In" : "/dev/null",
+            "TransferInput" : "WORKDIR/cmssw.tgz,WORKDIR/skim.py,WORKDIR/x509up",
+        }
+
+        pool_server = None
+        schedd_server = getenv('HOSTNAME')
+        should_spool = False
+        query_owner = getenv('USER')
     elif 'SubMIT' in config:
         base_job_properties = {
             "Iwd" : "WORKDIR",

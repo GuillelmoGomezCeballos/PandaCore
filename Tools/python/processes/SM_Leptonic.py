@@ -134,7 +134,6 @@ processes =    {
     'ZZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8':('ZZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8','MC',3.69433*1.1),
     'ZZTo4L_13TeV_powheg_pythia8':('ZZTo4L_13TeV_powheg_pythia8','MC',1.256),
     'ZZTo4L_TuneCP5_13TeV_powheg_pythia8':('ZZTo4L_TuneCP5_13TeV_powheg_pythia8','MC',1.256),
-    'WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8':('WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8','MC',6.36035*1.109),
 
     'WWTo2L2Nu_DoubleScattering_13TeV-pythia8':('WWTo2L2Nu_DoubleScattering_13TeV-pythia8','MC',0.16278),
 
@@ -178,6 +177,7 @@ processes =    {
     'ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8':('ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8','MC',35.6*(1.0-((1-0.1086*3)*(1-0.1086*3)))),
 
     'WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2':('WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2','MC',3.033*1.109),
+    'WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8':('WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8','MC',3.033*1.109),
     'WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8':('WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8','MC',4.9*1.109),
     'WZTo3LNu_13TeV-powheg-pythia8':('WZTo3LNu_13TeV-powheg-pythia8','MC',4.65800*1.109),
     'WZTo3LNu_TuneCP5_13TeV-powheg-pythia8':('WZTo3LNu_TuneCP5_13TeV-powheg-pythia8','MC',4.65800*1.109),

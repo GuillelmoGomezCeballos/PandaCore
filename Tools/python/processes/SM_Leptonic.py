@@ -195,6 +195,7 @@ processes =    {
     'WLLJJ_WToLNu_EWK_TuneCP5_13TeV_madgraph-madspin-pythia8':('WLLJJ_WToLNu_EWK_TuneCP5_13TeV_madgraph-madspin-pythia8','MC',0.01628),
 
     'WWTo2L2Nu_NNPDF31_TuneCP5_PSweights_13TeV-powheg-pythia8':('WWTo2L2Nu_NNPDF31_TuneCP5_PSweights_13TeV-powheg-pythia8','MC',(118.7-3.974)*0.1086*0.1086*9),
+    'WWTo2L2Nu_NNPDF31_TuneCP5_13TeV-powheg-pythia8':('WWTo2L2Nu_NNPDF31_TuneCP5_13TeV-powheg-pythia8','MC',(118.7-3.974)*0.1086*0.1086*9),
     'GluGluToWWToENEN_13TeV_MCFM701_pythia8':('GluGluToWWToENEN_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
     'GluGluToWWToENMN_13TeV_MCFM701_pythia8':('GluGluToWWToENMN_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
     'GluGluToWWToENTN_13TeV_MCFM701_pythia8':('GluGluToWWToENTN_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),

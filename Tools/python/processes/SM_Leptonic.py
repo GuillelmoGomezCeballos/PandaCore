@@ -85,6 +85,8 @@ processes =    {
     'WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8':('WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8','MC',20508.9*3),
 
     'ZH_ZToLL_HToGDarkG_M125_13TeV_powheg_pythia8':('ZH_ZToLL_HToGDarkG_M125_13TeV_powheg_pythia8','MC',0.8839*0.101*0.10),
+    'ZH_ZToLL_HToGDarkG_M200_13TeV_powheg_pythia8':('ZH_ZToLL_HToGDarkG_M200_13TeV_powheg_pythia8','MC',0.8839*0.101*0.10),
+    'ZH_ZToLL_HToGDarkG_M300_13TeV_powheg_pythia8':('ZH_ZToLL_HToGDarkG_M300_13TeV_powheg_pythia8','MC',0.8839*0.101*0.10),
 
     'ggZH_HToInv_ZToLL_M125_13TeV_powheg_pythia8':('ggZH_HToInv_ZToLL_M125_13TeV_powheg_pythia8','MC',0.1227*0.101),
     'ggZH_ZToLL_HToInvisible_M125_13TeV_powheg_pythia8':('ggZH_ZToLL_HToInvisible_M125_13TeV_powheg_pythia8','MC',0.1227*0.101),
@@ -205,6 +207,15 @@ processes =    {
     'GluGluToWWToTNEN_13TeV_MCFM701_pythia8':('GluGluToWWToTNEN_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
     'GluGluToWWToTNMN_13TeV_MCFM701_pythia8':('GluGluToWWToTNMN_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
     'GluGluToWWToTNTN_13TeV_MCFM701_pythia8':('GluGluToWWToTNTN_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToENEN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToENEN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToENMN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToENMN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToENTN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToENTN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToMNEN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToMNEN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToMNMN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToMNMN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToMNTN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToMNTN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToTNEN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToTNEN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToTNMN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToTNMN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
+    'GluGluToWWToTNTN_TuneCP5_13TeV_MCFM701_pythia8':('GluGluToWWToTNTN_TuneCP5_13TeV_MCFM701_pythia8','MC',3.974*0.1086*0.1086*1.4),
 
     'WpWpJJ_EWK-QCD_TuneCP5_13TeV-madgraph-pythia8':('WpWpJJ_EWK-QCD_TuneCP5_13TeV-madgraph-pythia8','MC',0.04929),
     'WpWpJJ_EWK_TuneCP5_13TeV-madgraph-pythia8':('WpWpJJ_EWK_TuneCP5_13TeV-madgraph-pythia8','MC',0.02598),

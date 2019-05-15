@@ -74,7 +74,7 @@ def setup_schedd(config='T3'):
             "WhenToTransferOutput" : "ON_EXIT",
             "ShouldTransferFiles" : "YES",
             "Requirements" :
-                classad.ExprTree('UidDomain == "mit.edu" && Arch == "X86_64" %s'%os),
+                classad.ExprTree('UidDomain == "mit.edu" && Machine != "T3DESK002.MIT.EDU" && Arch == "X86_64" %s'%os),
             "REQUIRED_OS" : "rhel6",
             "AcctGroup" : acct_grp_t3,
             "AccountingGroup" : '%s.USER'%(acct_grp_t3),

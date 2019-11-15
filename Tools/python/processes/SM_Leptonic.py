@@ -70,11 +70,18 @@ processes =    {
     'WpWpJJ_QCD_TuneCUETP8M1_13TeV-madgraph-pythia8':('WpWpJJ_QCD_TuneCUETP8M1_13TeV-madgraph-pythia8','MC',0.0261515),
 
     'WWjj_SS_dim8_ewk_Summer16':('WWjj_SS_dim8_ewk_Summer16','MC',0.0877*1.25),
-    'WWjj_SS_dim8_ewk_Fall17':('WWjj_SS_dim8_ewk','MC',0.0877*1.15),
-    'WWjj_SS_dim8_ewk_Autumn18':('WWjj_SS_dim8_ewk','MC',0.0877*1.15),
+    'WWjj_SS_dim8_ewk_Fall17':('WWjj_SS_dim8_ewk_Fall17','MC',0.0877*1.15),
+    'WWjj_SS_dim8_ewk_Autumn18':('WWjj_SS_dim8_ewk_Autumn18','MC',0.0877*1.15),
     'WZjj_dim8_ewk_Summer16':('WZjj_dim8_ewk_Summer16','MC',0.0289*1.30),
-    'WZjj_dim8_ewk_Fall17':('WZjj_dim8_ewk','MC',0.0289*1.10),
-    'WZjj_dim8_ewk_Autumn18':('WZjj_dim8_ewk','MC',0.0289*1.10),
+    'WZjj_dim8_ewk_Fall17':('WZjj_dim8_ewk_Fall17','MC',0.0289*1.10),
+    'WZjj_dim8_ewk_Autumn18':('WZjj_dim8_ewk_Autumn18','MC',0.0289*1.10),
+
+    'WWjj_SS_lttt_Summer16':('WWjj_SS_lttt_Summer16','MC',0.0258),
+    'WWjj_SS_lttt_Fall17':('WWjj_SS_lttt_Fall17','MC',0.0258),
+    'WWjj_SS_lttt_Autumn18':('WWjj_SS_lttt_Autumn18','MC',0.0258),
+    'WWjj_SS_long_Summer16':('WWjj_SS_long_Summer16','MC',0.00192),
+    'WWjj_SS_long_Fall17':('WWjj_SS_long_Fall17','MC',0.00192),
+    'WWjj_SS_long_Autumn18':('WWjj_SS_long_Autumn18','MC',0.00192),
 
     'TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8':('TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8','MC',1.444*3.2),
     'TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8':('TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8','MC',0.2529),

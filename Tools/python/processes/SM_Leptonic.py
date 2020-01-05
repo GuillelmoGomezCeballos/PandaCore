@@ -29,7 +29,7 @@ processes =    {
     'ZToMuMu_NNPDF30_13TeV-powheg_M_120_200':('ZToMuMu_NNPDF30_13TeV-powheg_M_120_200','MC',19.32),
     'ZToEE_NNPDF30_13TeV-powheg_M_120_200':('ZToEE_NNPDF30_13TeV-powheg_M_120_200','MC',19.32),
 
-    'tZq_ll_4f_13TeV-amcatnlo-pythia8':('tZq_ll_4f_13TeV-amcatnlo-pythia8','MC',0.0758*3.000),
+    'tZq_ll_4f_13TeV-amcatnlo-pythia8':('tZq_ll_4f_13TeV-amcatnlo-pythia8','MC',0.0758*3.250),
     'tZq_nunu_4f_13TeV-amcatnlo-pythia8_TuneCUETP8M1':('tZq_nunu_4f_13TeV-amcatnlo-pythia8_TuneCUETP8M1','MC',0.1379),
 
     'GluGluHToZZTo4L_M125_13TeV_powheg2_JHUgenV6_pythia8':('GluGluHToZZTo4L_M125_13TeV_powheg2_JHUgenV6_pythia8','MC',48.580*0.0264*0.101*0.101),
@@ -240,8 +240,8 @@ processes =    {
 
     'ZZJJTo4L_QCD_13TeV-madgraph-pythia8':('ZZJJTo4L_QCD_13TeV-madgraph-pythia8','MC',0.0093350),
     'ZZJJTo4L_EWK_13TeV-madgraph-pythia8':('ZZJJTo4L_EWK_13TeV-madgraph-pythia8','MC',0.0004404),
-    'ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8','MC',0.0085700*2.000),
-    'ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8','MC',0.0004270*2.000),
+    'ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8','MC',0.0085700*1.500),
+    'ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8','MC',0.0004270*1.500),
 
     'LNuAJJ_EWK_MJJ-120_13TeV-madgraph-pythia8':('LNuAJJ_EWK_MJJ-120_13TeV-madgraph-pythia8','MC',0.760378),
     'LLAJJ_EWK_MLL-50_MJJ-120_13TeV-madgraph-pythia8':('LLAJJ_EWK_MLL-50_MJJ-120_13TeV-madgraph-pythia8','MC',0.108344),
@@ -294,8 +294,8 @@ processes =    {
     'TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8':('TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8','MC',831.76*0.1086*0.1086*9),
     'ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8':('ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8','MC',35.6),
     'ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8':('ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8','MC',35.6),
-    'tZq_ll_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8':('tZq_ll_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8','MC',0.07358*2.3500),
-    'tZq_ll_4f_ckm_NLO_TuneCP5_13TeV-madgraph-pythia8':('tZq_ll_4f_ckm_NLO_TuneCP5_13TeV-madgraph-pythia8','MC',0.07358*1.75000),
+    'tZq_ll_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8':('tZq_ll_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8','MC',0.07358*0.6000),
+    'tZq_ll_4f_ckm_NLO_TuneCP5_13TeV-madgraph-pythia8':('tZq_ll_4f_ckm_NLO_TuneCP5_13TeV-madgraph-pythia8','MC',0.07358*0.93000),
     'tZq_Zhad_Wlept_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8':('tZq_Zhad_Wlept_4f_ckm_NLO_TuneCP5_PSweights_13TeV-amcatnlo-pythia8','MC',0.15180),
     'TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8':('TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8','MC',831.76*0.1086*3*(1-0.1086*3)*2),
     'TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8':('TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8','MC',831.76*0.1086*3*(1-0.1086*3)*2),

@@ -55,6 +55,11 @@ double SignedDeltaPhi(double phi1, double phi2);
 double DeltaR2(double eta1, double phi1, double eta2, double phi2);
 
 /**
+ * \brief Sphericity
+ */
+float sphericity(double r,  std::vector<TLorentzVector> & inputVectors_);
+
+/**
  * \brief Exponential times erf, aka CMSShape
  */
 double ExpErf(double x, double a, double b, double c);

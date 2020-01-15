@@ -3,31 +3,51 @@
 #include "iostream"
 #include "fstream"
 
-JERReader::JERReader(TString sfPath, TString resPath)
+JERReader::JERReader(TString sfPath, TString resPath, int year)
 {
 	// first load the sf file
 	std::ifstream fSF; 
 	fSF.open(sfPath.Data());
 
-	float eta0=0, eta1=1, sfcent=1, sflo=1, sfhi=1;
+	float eta0=0, eta1=1, SFpt0=0, SFpt1=0, sfcent=1, sflo=1, sfhi=1;
 
 	TString header = "";
 	while (!header.EndsWith("}"))
 		fSF >> header;
 
 	std::vector<double> sfEtaBounds;
+	std::vector<double> sfLowEtaBounds;
+	std::vector<double> sfHighEtaBounds;
+	std::vector<double> sfPtBounds;
+	std::vector<double> sfLowPtBounds;
+	std::vector<double> sfHighPtBounds;
 	while(!fSF.eof()) {
-		fSF >> eta0 >> eta1 >> header >> sfcent >> sflo >> sfhi;
-		sf_central.push_back(sfcent);
-		sf_up.push_back(sfhi);
-		sf_down.push_back(sflo);
-		if (sfEtaBounds.size()==0) 
-			sfEtaBounds.push_back(eta0);
-		sfEtaBounds.push_back(eta1);
+	  if (year == 2018)
+	    fSF >> eta0 >> eta1 >> SFpt0 >> SFpt1 >> header >> sfcent >> sflo >> sfhi;
+	  else
+	    fSF >> eta0 >> eta1 >> header >> sfcent >> sflo >> sfhi;
+	  sf_central.push_back(sfcent);
+	  sf_up.push_back(sfhi);
+	  sf_down.push_back(sflo);
+	  if (sfEtaBounds.size()==0) 
+	    sfEtaBounds.push_back(eta0);
+	  sfEtaBounds.push_back(eta1);
+
+	  if (year == 2018){
+	    sfLowEtaBounds.push_back(eta0);
+	    sfHighEtaBounds.push_back(eta1);
+	    sfLowPtBounds.push_back(SFpt0);
+	    sfHighPtBounds.push_back(SFpt1);
+	  }
+
 	}
 	n_sfEta = sfEtaBounds.size()-1;
+	n_sfPt = -99;
 
 	bins_sfEta = new Binner(sfEtaBounds);
+	if (year == 2018)
+	  bins_sfEtaPt = new Binner2D(sfLowEtaBounds,sfHighEtaBounds,sfLowPtBounds,sfHighPtBounds);
+
 	fSF.close();
 
 	// now load the resolution file
@@ -81,16 +101,24 @@ JERReader::JERReader(TString sfPath, TString resPath)
 
 }
 
-void JERReader::getStochasticSmear(double pt, double eta, double rho, 
-																	 double &smear, double &smearUp, double &smearDown) 
+void JERReader::getStochasticSmear(double pt, double eta, double rho, double &smear, double &smearUp, double &smearDown, bool usegen, double genpt, int year) 
 {
 	//logger.debug("JERReader::getStochasticSmear",
 	//		TString::Format("pT=%f, eta=%f, rho=%f",pt,eta,rho));
 	// first determine the scale factor
 	unsigned idxSFEta = bins_sfEta->bin(eta);
+	unsigned idxSFEtaPt = -99;
 	float sf_val = sf_central.at(idxSFEta);
 	float sf_valUp = sf_up.at(idxSFEta);
 	float sf_valDown = sf_down.at(idxSFEta);
+
+	if (year == 2018){
+	  idxSFEtaPt = bins_sfEtaPt->bin(eta,pt);
+	  sf_val = sf_central.at(idxSFEtaPt);
+	  sf_valUp = sf_up.at(idxSFEtaPt);
+	  sf_valDown = sf_down.at(idxSFEtaPt);
+	}
+
 	//logger.debug("JERReader::getStochasticSmear",
 	//		TString::Format("sf=%f, sfUp=%f, sfDown=%f",sf_val,sf_valUp,sf_valDown));
 
@@ -120,9 +148,30 @@ void JERReader::getStochasticSmear(double pt, double eta, double rho,
 
 	float toy = rng.Gaus(0,sigma_res);
 
+	if (usegen){
+	  sf_scale = sf_val-1.;
+	  sf_scaleUp = sf_valUp-1.;
+	  sf_scaleDown = sf_valDown-1.;
+	  toy = (pt-genpt)/pt;
+	}
+	else{
+	  if (sf_val < 1.){
+	    sf_scale = 0.;
+	    sf_scaleUp = 0.;
+	    sf_scaleDown = 0.;
+	  }
+	}
+
 	smear = 1 + toy*sf_scale; 
 	smearUp = 1 + toy*sf_scaleUp; 
 	smearDown = 1 + toy*sf_scaleDown; 
+
+	//https://github.com/cms-nanoAOD/nanoAOD-tools/blob/master/python/postprocessing/modules/jme/jetSmearer.py#L150	
+	if (usegen && smear*pt < 1.e-2){
+	  smear = 1.e-2;
+	  smearUp = 1.e-2;
+	  smearDown = 1.e-2;
+	}
 
 	//logger.debug("JERReader::getStochasticSmear",
 	//		TString::Format("smear=%f, smearUp=%f, smearDown=%f",smear,smearUp,smearDown));

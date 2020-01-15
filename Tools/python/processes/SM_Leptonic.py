@@ -240,8 +240,8 @@ processes =    {
 
     'ZZJJTo4L_QCD_13TeV-madgraph-pythia8':('ZZJJTo4L_QCD_13TeV-madgraph-pythia8','MC',0.0093350),
     'ZZJJTo4L_EWK_13TeV-madgraph-pythia8':('ZZJJTo4L_EWK_13TeV-madgraph-pythia8','MC',0.0004404),
-    'ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8','MC',0.0085700*1.500),
-    'ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8','MC',0.0004270*1.500),
+    'ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_QCD_TuneCP5_13TeV-madgraph-pythia8','MC',0.0085700*1.200),
+    'ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8':('ZZJJTo4L_EWK_TuneCP5_13TeV-madgraph-pythia8','MC',0.0004270*1.200),
 
     'LNuAJJ_EWK_MJJ-120_13TeV-madgraph-pythia8':('LNuAJJ_EWK_MJJ-120_13TeV-madgraph-pythia8','MC',0.760378),
     'LLAJJ_EWK_MLL-50_MJJ-120_13TeV-madgraph-pythia8':('LLAJJ_EWK_MLL-50_MJJ-120_13TeV-madgraph-pythia8','MC',0.108344),

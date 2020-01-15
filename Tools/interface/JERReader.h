@@ -19,16 +19,16 @@ public:
 									 kUp,
 									 kDown
 									};
-	JERReader(TString sfPath, TString resPath);
+	JERReader(TString sfPath, TString resPath, int year);
 	~JERReader() { delete bins_sfEta; delete bins_resEta; delete bins_resRho; }
 
-	void getStochasticSmear(double pt, double eta, double rho, 
-													double &smear, double &smearUp, double &smearDown);
+	void getStochasticSmear(double pt, double eta, double rho, double &smear, double &smearUp, double &smearDown, bool usegen, double genpt, int year);
 
 	// TODO implement	gen-based smearing
 private:
-	int n_sfEta;
+	int n_sfEta, n_sfPt;
 	Binner *bins_sfEta=0;
+	Binner2D *bins_sfEtaPt=0;
 	int n_resEta, n_resRho;
 	Binner *bins_resEta=0, *bins_resRho=0;
 

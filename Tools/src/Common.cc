@@ -10,8 +10,6 @@ void activateBranch(TTree *t, const char *bname, void *address) {
   t->SetBranchAddress(bname,address);
 }
 
-
-
 double getVal(TH1*h,double val) {
   return h->GetBinContent(h->FindBin(val));
 }

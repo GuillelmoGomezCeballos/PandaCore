@@ -14,6 +14,8 @@
 
 #define PI 3.141592654
 
+using namespace std; 
+
 /** \file PandaCore/Tools/interface/Common.h
  * \brief Common function header file
  * \author S. Narayanan
@@ -238,6 +240,68 @@ class Binner {
   private:
     std::vector<double> bounds; /**< internal boundary structure */
     unsigned int nB=0; /**< number of bins */
+};
+
+//////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * \brief Bins a continuous variable
+ *
+ */
+class Binner2D {
+  public:
+    /**
+     * \param bounds_  boundaries of the variable
+     * \brief Constructor
+     */
+    Binner2D(std::vector<double> boundsXLow_,std::vector<double> boundsXHigh_,std::vector<double> boundsYLow_,std::vector<double> boundsYHigh_) {
+      boundsXLow = boundsXLow_;
+      boundsXHigh = boundsXHigh_;
+      boundsYLow = boundsYLow_;
+      boundsYHigh = boundsYHigh_;
+      nBX = boundsXLow.size();
+      nBY = boundsYLow.size();
+    }
+    /**
+     * \brief Destructor
+     */
+    ~Binner2D() {}
+    /**
+     * \param x  value to bin
+     * \brief Returns a bin
+     */
+    unsigned int bin(double x, double y) {
+      // x and y outside of boundaries?
+      if (x<*min_element(boundsXLow.begin(),boundsXLow.end())){
+	x = *min_element(boundsXLow.begin(),boundsXLow.end())+1e-5;
+      }
+      if (x>*max_element(boundsXHigh.begin(),boundsXHigh.end())){
+	x = *max_element(boundsXHigh.begin(),boundsXHigh.end())-1e-5;
+      }
+      if (y<*min_element(boundsYLow.begin(),boundsYLow.end())){
+	y = *min_element(boundsYLow.begin(),boundsYLow.end())+1e-5;
+      }
+      if (y>*max_element(boundsYHigh.begin(),boundsYHigh.end())){
+	y = *max_element(boundsYHigh.begin(),boundsYHigh.end())-1e-5;
+      }
+
+      for (unsigned int iBX=0; iBX<nBX; iBX++){
+	if (x<boundsXHigh.at(iBX) && x>boundsXLow.at(iBX) && y<boundsYHigh.at(iBX) && y>boundsYLow.at(iBX))
+	  return iBX;
+      }
+      return 0;
+    }
+    /**
+     * \brief Returns max boundary
+     */
+    double getMax() { return boundsX.at(nBX-1); }
+    /**
+     * \brief Returns min boundary
+     */
+    double getMin() { return boundsX.at(0);    }
+  private:
+    std::vector<double> boundsX,boundsY,boundsXLow,boundsYLow,boundsXHigh,boundsYHigh; /**< internal boundary structure */
+    unsigned int nBX=0,nBY=0; /**< number of bins */
 };
 
 //////////////////////////////////////////////////////////////////////////////////

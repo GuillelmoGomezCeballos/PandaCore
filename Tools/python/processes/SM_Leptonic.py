@@ -90,6 +90,13 @@ processes =    {
     'WWjj_SS_long_Fall17':('WWjj_SS_long_Fall17','MC',0.00192),
     'WWjj_SS_long_Autumn18':('WWjj_SS_long_Autumn18','MC',0.00192),
 
+    'WWjj_SS_interference_Summer16':('WWjj_SS_interference_Summer16','MC',0.003769),
+    'WWjj_SS_interference_Fall17':('WWjj_SS_interference_Fall17','MC',0.003769),
+    'WWjj_SS_interference_Autumn18':('WWjj_SS_interference_Autumn18','MC',0.003769),
+    'WZJJ_interference_Summer16':('WZJJ_interference_Summer16','MC',0.0002365*4),
+    'WZJJ_interference_Fall17':('WZJJ_interference_Fall17','MC',0.0002365*4),
+    'WZJJ_interference_Autumn18':('WZJJ_interference_Autumn18','MC',0.0002365*4),
+
     'TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8':('TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8','MC',1.444*3.2),
     'TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8':('TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8','MC',0.2529),
     'TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8':('TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8','MC',0.5297),

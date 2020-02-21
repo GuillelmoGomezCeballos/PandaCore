@@ -80,7 +80,7 @@ processes =	{
 'WZTo3LNu_3Jets_MLL-4To50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8':('WZTo3LNu_3Jets_MLL-4To50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8','MC',0.0508602*1.109*1.206),
 'WLLJJ_WToLNu_EWK_TuneCUETP8M1_13TeV_madgraph-madspin-pythia8':('WLLJJ_WToLNu_EWK_TuneCUETP8M1_13TeV_madgraph-madspin-pythia8','MC',0.0176340),
 #'WpWpJJ_EWK-QCD_TuneCUETP8M1_13TeV-madgraph-pythia8':('WpWpJJ_EWK-QCD_TuneCUETP8M1_13TeV-madgraph-pythia8','MC',0.0538980),
-#'WpWpJJ_EWK_TuneCUETP8M1_13TeV-madgraph-pythia8':('WpWpJJ_EWK_TuneCUETP8M1_13TeV-madgraph-pythia8','MC',0.0269642),
+'WpWpJJ_EWK_TuneCUETP8M1_13TeV-madgraph-pythia8':('WpWpJJ_EWK_TuneCUETP8M1_13TeV-madgraph-pythia8','MC',0.0269642),
 'WpWpJJ_QCD_TuneCUETP8M1_13TeV-madgraph-pythia8':('WpWpJJ_QCD_TuneCUETP8M1_13TeV-madgraph-pythia8','MC',0.0261515),
 'WWjj_SS_lttt_Summer16':('WWjj_SS_lttt_Summer16','MC',0.0258),
 'WWjj_SS_long_Summer16':('WWjj_SS_long_Summer16','MC',0.00192),

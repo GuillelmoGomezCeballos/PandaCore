@@ -107,6 +107,16 @@ processes =    {
     'WWjj_SS_tt_new_Fall17':('WWjj_SS_tt_new_Fall17','MC',0.0161),
     'WWjj_SS_tt_new_Autumn18':('WWjj_SS_tt_new_Autumn18','MC',0.0161),
 
+    'WWjj_SS_long_wwframe_Summer16':('WWjj_SS_long_wwframe_Summer16','MC',0.003193),
+    'WWjj_SS_long_wwframe_Fall17':('WWjj_SS_long_wwframe_Fall17','MC',0.003193),
+    'WWjj_SS_long_wwframe_Autumn18':('WWjj_SS_long_wwframe_Autumn18','MC',0.003193),
+    'WWjj_SS_lt_wwframe_Summer16':('WWjj_SS_lt_wwframe_Summer16','MC',0.009288),
+    'WWjj_SS_lt_wwframe_Fall17':('WWjj_SS_lt_wwframe_Fall17','MC',0.009288),
+    'WWjj_SS_lt_wwframe_Autumn18':('WWjj_SS_lt_wwframe_Autumn18','MC',0.009288),
+    'WWjj_SS_tt_wwframe_Summer16':('WWjj_SS_tt_wwframe_Summer16','MC',0.01667),
+    'WWjj_SS_tt_wwframe_Fall17':('WWjj_SS_tt_wwframe_Fall17','MC',0.01667),
+    'WWjj_SS_tt_wwframe_Autumn18':('WWjj_SS_tt_wwframe_Autumn18','MC',0.01667),
+
     'TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8':('TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8','MC',1.444*3.2),
     'TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8':('TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8','MC',0.2529),
     'TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8':('TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8','MC',0.5297),

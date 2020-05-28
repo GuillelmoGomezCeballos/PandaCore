@@ -86,6 +86,12 @@ processes =	{
 'WWjj_SS_long_Summer16':('WWjj_SS_long_Summer16','MC',0.00192),
 'WWjj_SS_interference_Summer16':('WWjj_SS_interference_Summer16','MC',0.003769),
 'WZJJ_interference_Summer16':('WZJJ_interference_Summer16','MC',0.0002365*4),
+'WWjj_SS_long_new_Summer16':('WWjj_SS_long_new_Summer16','MC',0.002119),
+'WWjj_SS_lt_new_Summer16':('WWjj_SS_lt_new_Summer16','MC',0.01087),
+'WWjj_SS_tt_new_Summer16':('WWjj_SS_tt_new_Summer16','MC',0.0161),
+'WWjj_SS_long_wwframe_Summer16':('WWjj_SS_long_wwframe_Summer16','MC',0.003193),
+'WWjj_SS_lt_wwframe_Summer16':('WWjj_SS_lt_wwframe_Summer16','MC',0.009288),
+'WWjj_SS_tt_wwframe_Summer16':('WWjj_SS_tt_wwframe_Summer16','MC',0.01667),
 
 'TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8':('TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8','MC',1.444*3.2),
 'TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8':('TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8','MC',0.2529),

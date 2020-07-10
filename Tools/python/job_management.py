@@ -72,10 +72,11 @@ def setup_schedd(config='T3'):
             "Iwd" : "WORKDIR",
             "Cmd" : "WORKDIR/exec.sh",
             "WhenToTransferOutput" : "ON_EXIT",
+            "REQUIRED_OS" : "rhel7",
+            "PYTHONHOME" : "/home/ceballos/.local/lib/python2.7/site-packages/",
             "ShouldTransferFiles" : "YES",
             "Requirements" :
-                classad.ExprTree('UidDomain == "mit.edu" && Machine != "T3DESK002.MIT.EDU" && Arch == "X86_64" %s'%os),
-            "REQUIRED_OS" : "rhel6",
+                classad.ExprTree('UidDomain == "mit.edu" && Arch == "X86_64" %s && TARGET.Machine == "t3btch005.mit.edu"'%os),
             "AcctGroup" : acct_grp_t3,
             "AccountingGroup" : '%s.USER'%(acct_grp_t3),
             "X509UserProxy" : "/tmp/x509up_uUID",
@@ -99,7 +100,7 @@ def setup_schedd(config='T3'):
 ((GLIDEIN_Site =!= "MIT_CampusFactory") || (GLIDEIN_Site == "MIT_CampusFactory" && \
 BOSCOCluster == "ce03.cmsaf.mit.edu" && BOSCOGroup == "bosco_cms" && HAS_CVMFS_cms_cern_ch))'%os),
                 #classad.ExprTree('UidDomain == "cmsaf.mit.edu" && Arch == "X86_64" && OpSysAndVer == "SL6"'),
-            "REQUIRED_OS" : "rhel6",
+            "REQUIRED_OS" : "rhel7",
             "AcctGroup" : 'group_cmsuser.USER',
             "AccountingGroup" : 'group_cmsuser.USER',
             "X509UserProxy" : "/tmp/x509up_uUID",
@@ -123,7 +124,7 @@ BOSCOCluster == "ce03.cmsaf.mit.edu" && BOSCOGroup == "bosco_cms" && HAS_CVMFS_c
 ((GLIDEIN_Site == "MIT_CampusFactory" && \
 BOSCOCluster == "ce03.cmsaf.mit.edu" && BOSCOGroup == "bosco_cms" && HAS_CVMFS_cms_cern_ch))'%os),
 #                classad.ExprTree('UidDomain == "cmsaf.mit.edu" && Arch == "X86_64" && OpSysAndVer == "SL6"'),
-            "REQUIRED_OS" : "rhel6",
+            "REQUIRED_OS" : "rhel7",
             "AcctGroup" : 'group_cmsuser.USER',
             "AccountingGroup" : 'group_cmsuser.USER',
             "X509UserProxy" : "/tmp/x509up_uUID",
@@ -143,21 +144,21 @@ BOSCOCluster == "ce03.cmsaf.mit.edu" && BOSCOGroup == "bosco_cms" && HAS_CVMFS_c
             "WhenToTransferOutput" : "ON_EXIT",
             "ShouldTransferFiles" : "YES",
             "Requirements" : classad.ExprTree(
-                 'Arch == "X86_64" && TARGET.OpSys == "LINUX" && TARGET.HasFileTransfer && ( isUndefined(IS_GLIDEIN) || ( OSGVO_OS_STRING == "RHEL 6" && HAS_CVMFS_cms_cern_ch == true ) || GLIDEIN_REQUIRED_OS == "rhel6" || HAS_SINGULARITY == true || ( Has_CVMFS_cms_cern_ch == true && ( BOSCOGroup == "bosco_cms" ) ) ) && %s'%(submit_exclude)
+                 'Arch == "X86_64" && TARGET.OpSys == "LINUX" && TARGET.HasFileTransfer && ( isUndefined(IS_GLIDEIN) || ( OSGVO_OS_STRING == "RHEL 6" && HAS_CVMFS_cms_cern_ch == true ) || GLIDEIN_REQUIRED_OS == "rhel7" || HAS_SINGULARITY == true || ( Has_CVMFS_cms_cern_ch == true && ( BOSCOGroup == "bosco_cms" ) ) ) && %s'%(submit_exclude)
             ),
             "AcctGroup" : "analysis",
             "AccountingGroup" : "analysis.USER",
-            "X509UserProxy" : "/tmp/x509up_u2268",
+            "X509UserProxy" : "/tmp/x509up_uUID",
             "OnExitHold" : classad.ExprTree("( ExitBySignal == true ) || ( ExitCode != 0 )"),
             "In" : "/dev/null",
             "TransferInput" : "WORKDIR/cmssw.tgz,WORKDIR/skim.py",
             "ProjectName" : "CpDarkMatterSimulation",
             "Rank" : "Mips",
             'SubMITOwner' : 'USER',
-            "REQUIRED_OS" : "rhel6",
-            "DESIRED_OS" : "rhel6",
+            "REQUIRED_OS" : "rhel7",
+            "DESIRED_OS" : "rhel7",
             "RequestDisk" : 3000000,
-            "SingularityImage" : "/cvmfs/singularity.opensciencegrid.org/bbockelm/cms:rhel6",
+            "SingularityImage" : "/cvmfs/singularity.opensciencegrid.org/bbockelm/cms:rhel7",
         }
 
         pool_server = 'submit.mit.edu:9615'
@@ -487,6 +488,8 @@ class Submission(_BaseSubmission):
         myinfo('Submission.execute','Submitting %i jobs!'%(len(procs)))
         self.submission_time = time.time()
         results = []
+
+        #print cluster_ad
         self.cluster_id = self.schedd.submitMany(cluster_ad, procs, spool=should_spool, ad_results=results)
         if should_spool:
             myinfo('Submission.execute','Spooling inputs...')

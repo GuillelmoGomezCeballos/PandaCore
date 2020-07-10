@@ -7,7 +7,7 @@ try:
     import classad
 except ImportError:
     import imp
-    local_path = ['/usr/lib64/python2.6/site-packages/']
+    local_path = ['/usr/lib64/python2.7/site-packages/']
     def _get_module(name):
         global files
         found = imp.find_module(name,local_path)

@@ -76,7 +76,7 @@ def setup_schedd(config='T3'):
             "PYTHONHOME" : "/home/ceballos/.local/lib/python2.7/site-packages/",
             "ShouldTransferFiles" : "YES",
             "Requirements" :
-                classad.ExprTree('UidDomain == "mit.edu" && Arch == "X86_64" %s && TARGET.Machine == "t3btch005.mit.edu"'%os),
+                classad.ExprTree('UidDomain == "mit.edu" && Arch == "X86_64" %s && TARGET.Machine != "t3btchXXX.mit.edu"'%os),
             "AcctGroup" : acct_grp_t3,
             "AccountingGroup" : '%s.USER'%(acct_grp_t3),
             "X509UserProxy" : "/tmp/x509up_uUID",

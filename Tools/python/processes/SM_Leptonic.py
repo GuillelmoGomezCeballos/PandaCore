@@ -439,7 +439,8 @@ processes =    {
     'WpWpJJ_EWK_TuneCP5_13TeV-madgraph-pythia8':('WpWpJJ_EWK_TuneCP5_13TeV-madgraph-pythia8','MC',0.02598),
     'WpWpJJ_QCD_TuneCP5_13TeV-madgraph-pythia8':('WpWpJJ_QCD_TuneCP5_13TeV-madgraph-pythia8','MC',0.02227),
 
-    'WpWpJJ_EWK_TuneCP5_13TeV-powheg-pythia8':('WpWpJJ_EWK_TuneCP5_13TeV-powheg-pythia8','MC',0.01999),
+    'WpWpJJ_EWK_TuneCP5_13TeV-powheg-pythia8':('WpWpJJ_EWK_TuneCP5_13TeV-powheg-pythia8','MC',0.02598/1.5), #0.01999
+    'WpWpJJ_EWK_TuneCP5_13TeV-vbfnlo-pythia8':('WpWpJJ_EWK_TuneCP5_13TeV-vbfnlo-pythia8','MC',0.02598/1.5), #0.01935
 
     'WW_TuneCP5_13TeV-pythia8':('WW_TuneCP5_13TeV-pythia8','MC',120.2896),
     'WZ_TuneCP5_13TeV-pythia8':('WZ_TuneCP5_13TeV-pythia8','MC',22.82*2.25),
